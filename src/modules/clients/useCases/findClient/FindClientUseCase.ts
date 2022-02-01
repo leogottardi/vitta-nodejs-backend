@@ -1,17 +1,17 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppError";
-import { IClientsRepository } from "../../repositories/IClientsRepository";
+import { IClientRepository } from "../../repositories/IClientRepository";
 
 @injectable()
 class FindClientUseCase {
 
   constructor(
-    @inject("ClientsRepository")
-    private clientsRepository: IClientsRepository,
+    @inject("ClientRepository")
+    private clientRepository: IClientRepository,
   ) { }
 
   async execute(id: string) {
-    const client = await this.clientsRepository.findById(id);
+    const client = await this.clientRepository.findById(id);
     console.log({ client })
     if (!client) {
       throw new AppError("Client not found!", 404);

@@ -10,7 +10,7 @@ class CreateClientController {
 
     const client = await createClientUseCase.execute({
       name,
-      document: Number(document)
+      document
     });
 
     return response.status(201).json(client);

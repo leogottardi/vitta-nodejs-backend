@@ -1,5 +1,5 @@
 import { Client } from "@modules/clients/entities/Client";
-import { FakeClientsRepository } from "@modules/clients/repositories/fakes/FakeClientsRepository";
+import { FakeClientsRepository } from "@modules/clients/repositories/fakes/FakeClientRepository";
 import { AppError } from "../../../../errors/AppError";
 import { CreateClientUseCase } from "../createClient/CreateClientUseCase";
 import { FindClientUseCase } from "./FindClientUseCase";

@@ -1,8 +1,8 @@
 import { getRedis, setRedis } from "../../../../config/redis";
 import { Client } from "../../entities/Client";
-import { IClientsRepository } from "../IClientsRepository";
+import { IClientRepository } from "../IClientRepository";
 
-class ClientsRepository implements IClientsRepository {
+class ClientRepository implements IClientRepository {
   async create(client: Client): Promise<void> {
     await setRedis(`client-${client.id}`, JSON.stringify(client));
   }
@@ -13,4 +13,4 @@ class ClientsRepository implements IClientsRepository {
   }
 }
 
-export { ClientsRepository }
+export { ClientRepository }

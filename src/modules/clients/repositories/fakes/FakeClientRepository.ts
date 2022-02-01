@@ -1,7 +1,7 @@
 import { Client } from '@modules/clients/entities/Client';
-import { IClientsRepository } from '../IClientsRepository';
+import { IClientRepository } from '../IClientRepository';
 
-export class FakeClientsRepository implements IClientsRepository {
+export class FakeClientRepository implements IClientRepository {
   private clients: string[] = [];
 
   async create(client: Client): Promise<void> {

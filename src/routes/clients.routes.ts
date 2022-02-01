@@ -1,3 +1,4 @@
+import { ensureAuthenticated } from "../shared/middlewares/ensureAuthenticated";
 import { celebrate, Segments, Joi } from "celebrate";
 import { Router } from "express";
 import { CreateClientController } from "../modules/clients/useCases/createClient/CreateClientController";
@@ -8,6 +9,7 @@ const clientsRoutes = Router();
 const createClientController = new CreateClientController();
 const findClientController = new FindClientController();
 
+
 clientsRoutes.post(
   "/",
   celebrate({
@@ -17,14 +19,15 @@ clientsRoutes.post(
     }
   },
     { abortEarly: false }
-  ), createClientController.handle
+  ),
+  createClientController.handle
 )
 
 clientsRoutes.get(
   "/:id",
   celebrate({
     [Segments.PARAMS]: {
-      id: Joi.number().required(),
+      id: Joi.string().required(),
     }
   },
     { abortEarly: false }

@@ -1,8 +1,8 @@
 import { container } from "tsyringe";
-import { ClientsRepository } from "../../modules/clients/repositories/implementations/ClientsRepository";
-import { IClientsRepository } from "../../modules/clients/repositories/IClientsRepository";
+import { ClientRepository } from "../../modules/clients/repositories/implementations/ClientRepository";
+import { IClientRepository } from "../../modules/clients/repositories/IClientRepository";
 
-container.registerSingleton<IClientsRepository>(
-  "ClientsRepository",
-  ClientsRepository
+container.registerSingleton<IClientRepository>(
+  "ClientRepository",
+  ClientRepository
 )

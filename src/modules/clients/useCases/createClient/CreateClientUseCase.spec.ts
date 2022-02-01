@@ -1,5 +1,5 @@
 import { Client } from '@modules/clients/entities/Client';
-import { FakeClientsRepository } from '@modules/clients/repositories/fakes/FakeClientsRepository';
+import { FakeClientsRepository } from '@modules/clients/repositories/fakes/FakeClientRepository';
 import { CreateClientUseCase } from './CreateClientUseCase';
 
 let fakeClientsRepository: FakeClientsRepository;
