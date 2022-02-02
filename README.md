@@ -38,11 +38,52 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias :
 
   Levante o redis pelo docker com as configurações padrões com os comandos abaixo:
   ```bash
-  $ docker pull redis # Baixa a imagem do redis
-  $ docker run -d -p 6379:6379 redis #Execute o redis em background e com a porta 6379 aberta para localhost
-  ```
+  # Baixa a imagem do redis
+  $ docker pull redis 
 
+  # Execute o redis em background e com a porta 6379 aberta para localhost
+  $ docker run -d -p 6379:6379 redis 
+  ```
+### 🔒 Autenticação
+Todas as rotas precisam ser autenticadas via token JWT. Siga os passos da requisição abaixo para obter o token.
+
+**Método:** `POST`
+
+**Rota:** `https://accounts.seguros.vitta.com.br/auth/realms/careers/protocol/openid-connect/token`
+
+**Header:** `Content-Type: application/x-www-form-urlencoded`
+
+**Payload:** 
+```
+grant_type=client_credentials
+client_id=customers
+client_secret=453000f7-47a0-4489-bc47-891c742650e2
+username=<seu_email>
+password=<base64_de_seu_email>
+scope=openid
+```
+
+**Resposta da requisição:**
+```bash
+{
+"access_token": "<token>", # token a ser usado na autenticação
+"expires_in": 300,
+"refresh_expires_in": 0,
+"token_type": "Bearer",
+"not-before-policy": 0,
+"scope": "openid profile email",
+"Id_token": “...“
+}
+```
 ---
+
+## Documentação das rotas
+  Para acessar a documentação das rotas, siga os passos de [Como baixar e executar o projeto](#-como-baixar-o-projeto) e com o projeto em execução acesse a url: localhost:3333/api-docs
+
+  Veja no GIF abaixo onde o token de autenticação deve ser informado para conseguir realizar as requisições:
+  
+  ![Token](https://im7.ezgif.com/tmp/ezgif-7-66e40a0050.gif)
+
 
 ## 📦 Como baixar o projeto
 ```bash
