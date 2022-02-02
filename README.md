@@ -38,8 +38,12 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias :
   BASIC_AUTH=Y3VzdG9tZXJzOjQ1MzAwMGY3LTQ3YTAtNDQ4OS1iYzQ3LTg5MWM3NDI2NTBlMg==
   ```
 
-  Obs: O arquivo .env ja existe nesse repositório, confira se as informações presentes no arquivo são iguais as descritas acima.
+  `Obs: O arquivo .env ja existe nesse repositório, confira se as informações presentes no arquivo são iguais as descritas acima.`
 
+---
+  Se possuir o docker-compose instalado, basta rodar o comando: `docker-compose up` para instalar as dependências e executar o projeto. Caso não tenha, ignore essa parte.
+
+---
   Levante o redis pelo docker com as configurações padrões com os comandos abaixo:
   ```bash
   # Baixa a imagem do redis
@@ -48,6 +52,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias :
   # Execute o redis em background e com a porta 6379 aberta para localhost
   $ docker run -d -p 6379:6379 redis 
   ```
+---
 ### 🔒 Autenticação
 Todas as rotas precisam ser autenticadas via token JWT. Siga os passos da requisição abaixo para obter o token.
 
@@ -88,7 +93,7 @@ scope=openid
 
   ![Token](https://im7.ezgif.com/tmp/ezgif-7-66e40a0050.gif)
 
-
+---
 ## 📦 Como baixar o projeto
 ```bash
     #Clonar o repositório
