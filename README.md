@@ -38,6 +38,8 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias :
   BASIC_AUTH=Y3VzdG9tZXJzOjQ1MzAwMGY3LTQ3YTAtNDQ4OS1iYzQ3LTg5MWM3NDI2NTBlMg==
   ```
 
+  Obs: O arquivo .env ja existe nesse repositório, confira se as informações presentes no arquivo são iguais as descritas acima.
+
   Levante o redis pelo docker com as configurações padrões com os comandos abaixo:
   ```bash
   # Baixa a imagem do redis
