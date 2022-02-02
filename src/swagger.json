@@ -1,15 +1,17 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Documentação RentalX",
-    "description": "Descrição RentalX",
+    "title": "Documentação Vitta NodeJS Backend",
+    "description": "Api de cadastro de clientes",
     "version": "1.0.0"
   },
   "paths": {
-    "/categories": {
+    "/clients": {
       "post": {
-        "summary": "Create a category",
-        "description": "Create a new category",
+        "tags": [
+          "Client"
+        ],
+        "summary": "Criar um cliente",
         "requestBody": {
           "content": {
             "application/json": {
@@ -19,13 +21,13 @@
                   "name": {
                     "type": "string"
                   },
-                  "description": {
-                    "type": "string"
+                  "document": {
+                    "type": "number"
                   }
                 },
                 "example": {
-                  "name": "category name sample",
-                  "description": "category description sample"
+                  "name": "joão",
+                  "document": 1234
                 }
               }
             }
@@ -33,111 +35,105 @@
         },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Cliente criado com sucesso."
           },
-          "500": {
-            "description": "Category already exists"
+          "401": {
+            "description": "Token não enviado / Token inválido / Não autorizado"
+          }
+        }
+      }
+    },
+    "/clients/{id}": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Buscar cliente pelo ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": "true",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o cliente"
+          },
+          "404": {
+            "description": "Cliente não encontrado"
+          },
+          "401": {
+            "description": "Token não enviado / Token inválido / Não autorizado"
           }
         }
       },
-      "get": {
+      "put": {
         "tags": [
-          "Category"
+          "Client"
         ],
-        "summary": "List all categories",
-        "description": "List all categories",
-        "response": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
+        "summary": "Atualizar um cliente",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": "true",
+            "schema": {
+              "type": "string",
+              "minimum": 1
             }
           }
-        }
-      }
-    },
-    "/categories/import": {
-      "post": {
-        "tags": [
-          "Category"
         ],
-        "summary": "Upload a new category",
-        "description": "Upload a new category",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created"
-          }
-        }
-      }
-    },
-    "/specifications": {
-      "post": {
-        "tags": [
-          "Specifications"
-        ],
-        "summary": "Create a specification",
-        "description": "Create a new specification",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/Specification"
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "document": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "name": "joão",
+                  "document": 1234
+                }
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "Cliente atualizado com sucesso."
           },
-          "500": {
-            "description": "Specification already exists"
+          "404": {
+            "description": "Cliente não encontrado"
+          },
+          "401": {
+            "description": "Token não enviado / Token inválido / Não autorizado"
           }
         }
       }
     }
   },
-  "definitions": {
-    "Specification": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
-  }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
 }

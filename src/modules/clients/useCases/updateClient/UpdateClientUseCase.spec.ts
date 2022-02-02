@@ -2,26 +2,30 @@ import { Client } from "@modules/clients/entities/Client";
 import { FakeClientRepository } from "@modules/clients/repositories/fakes/FakeClientRepository";
 import { AppError } from "../../../../errors/AppError";
 import { CreateClientUseCase } from "../createClient/CreateClientUseCase";
-import { FindClientUseCase } from "./FindClientUseCase";
+import { UpdateClientUseCase } from "./UpdateClientUseCase";
 
 let fakeClientsRepository: FakeClientRepository;
-let findClientUseCase: FindClientUseCase;
+let updateClientUseCase: UpdateClientUseCase;
 let createClientUseCase: CreateClientUseCase;
 
-describe("Find a client", () => {
+describe("Update a client", () => {
   beforeEach(async () => {
     fakeClientsRepository = new FakeClientRepository();
 
-    findClientUseCase = new FindClientUseCase(fakeClientsRepository);
+    updateClientUseCase = new UpdateClientUseCase(fakeClientsRepository);
     createClientUseCase = new CreateClientUseCase(fakeClientsRepository);
 
     await createClientUseCase.execute({ name: "Leo", document: 123 });
   });
 
-  it("return a client", async () => {
-    const client: Client = await findClientUseCase.execute("7e79aecd-c59c-40e0-8273-45148adbe204");
+  it("when all params are valid, updated a client", async () => {
+    const client: Client = await updateClientUseCase.execute({
+      id: "7e79aecd-c59c-40e0-8273-45148adbe204",
+      name: "Novo nome",
+      document: 4444
+    });
 
-    const expected_client = new Client("Leo", 123);
+    const expected_client = new Client("Novo nome", 4444);
 
     Object.assign(expected_client, {
       id: "7e79aecd-c59c-40e0-8273-45148adbe204"
@@ -31,6 +35,6 @@ describe("Find a client", () => {
   })
 
   it("returns an exception when it cannot find the client", async () => {
-    await expect(findClientUseCase.execute("123")).rejects.toBeInstanceOf(AppError);
+    await expect(updateClientUseCase.execute({ id: "123" })).rejects.toBeInstanceOf(AppError);
   });
 });

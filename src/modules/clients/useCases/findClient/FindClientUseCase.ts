@@ -11,13 +11,15 @@ class FindClientUseCase {
   ) { }
 
   async execute(id: string) {
-    const client = await this.clientRepository.findById(id);
-    console.log({ client })
-    if (!client) {
+    const stringClient = await this.clientRepository.findById(id);
+
+    if (!stringClient) {
       throw new AppError("Client not found!", 404);
     }
 
-    return JSON.parse(client);
+    const client = JSON.parse(stringClient);
+
+    return client;
   }
 }
 

@@ -1,17 +1,17 @@
 import { Client } from '@modules/clients/entities/Client';
-import { FakeClientsRepository } from '@modules/clients/repositories/fakes/FakeClientRepository';
+import { FakeClientRepository } from '@modules/clients/repositories/fakes/FakeClientRepository';
 import { CreateClientUseCase } from './CreateClientUseCase';
 
-let fakeClientsRepository: FakeClientsRepository;
+let fakeClientRepository: FakeClientRepository;
 let createClientUseCase: CreateClientUseCase;
 
 describe('Create a client', () => {
   beforeEach(async () => {
-    fakeClientsRepository = new FakeClientsRepository();
-    createClientUseCase = new CreateClientUseCase(fakeClientsRepository);
+    fakeClientRepository = new FakeClientRepository();
+    createClientUseCase = new CreateClientUseCase(fakeClientRepository);
   });
 
-  it('deve buscar um plano pelo identificador', async () => {
+  it('when all params are valid, create a client', async () => {
     const client: Client = await createClientUseCase.execute({ name: "Leo", document: 123 });
 
     const expected_client = new Client("Leo", 123);

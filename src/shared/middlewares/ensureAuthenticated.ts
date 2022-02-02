@@ -41,7 +41,7 @@ export async function ensureAuthenticated(request: Request, response: Response, 
   const token = decode(accessToken, { complete: true });
 
   if (!token) {
-    throw new AppError("token missing", 401)
+    throw new AppError("invalid token", 401)
   }
 
   const keyId = token.header.kid;
