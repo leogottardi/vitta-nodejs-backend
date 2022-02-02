@@ -32,8 +32,10 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias :
 ## 📓 Como utilizar
   Para utilizar a api você deve simular com [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/).
 
-  Primeiro, crie um arquivo ".env" na raiz do projeto e cole as envs descritas abaixo:
+  Antes de tudo, crie um arquivo ".env" na raiz do projeto e cole as envs descritas abaixo:
   ```
+  VITTA_SSO_BASE_URL=https://accounts.seguros.vitta.com.br/
+  BASIC_AUTH=Y3VzdG9tZXJzOjQ1MzAwMGY3LTQ3YTAtNDQ4OS1iYzQ3LTg5MWM3NDI2NTBlMg==
   ```
 
   Levante o redis pelo docker com as configurações padrões com os comandos abaixo:
@@ -81,7 +83,7 @@ scope=openid
   Para acessar a documentação das rotas, siga os passos de [Como baixar e executar o projeto](#-como-baixar-o-projeto) e com o projeto em execução acesse a url: localhost:3333/api-docs
 
   Veja no GIF abaixo onde o token de autenticação deve ser informado para conseguir realizar as requisições:
-  
+
   ![Token](https://im7.ezgif.com/tmp/ezgif-7-66e40a0050.gif)
 
 
