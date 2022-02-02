@@ -9,7 +9,7 @@ const getPublicKey = async (keyId: string) => {
   try {
     response = await vitta_sso.get("auth/realms/careers/protocol/openid-connect/certs");
   } catch {
-    throw new AppError("SSO Indisponível", 502);
+    throw new AppError("SSO unavailable", 502);
   }
 
   let keys = response.data.keys;
