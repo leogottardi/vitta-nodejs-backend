@@ -89,9 +89,6 @@ scope=openid
 ## Documentação das rotas
   Para acessar a documentação das rotas, siga os passos de [Como baixar e executar o projeto](#-como-baixar-o-projeto) e com o projeto em execução acesse a url: localhost:3333/api-docs
 
-  Veja no GIF abaixo onde o token de autenticação deve ser informado para conseguir realizar as requisições:
-
-  ![Token](https://im7.ezgif.com/tmp/ezgif-7-66e40a0050.gif)
 
 ---
 ## 📦 Como baixar o projeto
